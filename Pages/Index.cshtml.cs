@@ -1,20 +1,19 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ImageProcessingTool.Pages
+public class IndexModel : PageModel
 {
-    public class IndexModel : PageModel
+    private readonly ImgurService _imgurService;
+    public List<string> Images { get; set; }
+
+    public IndexModel(ImgurService imgurService)
     {
-        private readonly ILogger<IndexModel> _logger;
-
-        public IndexModel(ILogger<IndexModel> logger)
-        {
-            _logger = logger;
-        }
-
-        public void OnGet()
-        {
-
-        }
+        _imgurService = imgurService;
+        Images = new List<string>();
     }
+
+    public async Task OnGetAsync()
+    {
+        Images = await _imgurService.GetImagesAsync("cats");
+    }
+
 }

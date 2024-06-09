@@ -1,7 +1,11 @@
+using ImageProcessingTool.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddHttpClient<ImgurService>();
+builder.Services.Configure<ImgurOptions>(builder.Configuration.GetSection("Imgur"));
 
 var app = builder.Build();
 
