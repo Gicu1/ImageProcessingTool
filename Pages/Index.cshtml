@@ -1,19 +1,43 @@
 ﻿@page
-@model IndexModel
+@model ImageProcessingTool.Pages.IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
 <div class="text-center">
-    <form method="post">
-        <input type="text" name="query" placeholder="Search Imgur" required />
+    <form id="searchForm" method="post">
+        <input type="text" name="Query" placeholder="Search Imgur" required />
         <button type="submit">Search</button>
     </form>
-  
-    <div style="display: grid; grid-template-columns: repeat(auto-fill, 100px); gap: 10px;">
+
+    <div id="imagesContainer" style="display: grid; grid-template-columns: repeat(auto-fill, 128px); gap: 20px;">
         @foreach (var imageUrl in Model.Images)
         {
-            <img src="~/images/@System.IO.Path.GetFileName(imageUrl)" alt="Image from Imgur" style="width: 100px; height: 100px; object-fit: cover;" />
+            <img src="@imageUrl" alt="Image from Imgur" style="width: 128px; height: 128px; object-fit: cover;" />
         }
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            const query = formData.get('Query');
+
+            const response = await fetch('/Index?handler=OnPost', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                const html = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const imagesContainer = doc.getElementById('imagesContainer');
+                document.getElementById('imagesContainer').innerHTML = imagesContainer.innerHTML;
+            }
+        });
+    </script>
+}

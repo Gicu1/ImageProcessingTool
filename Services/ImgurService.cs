@@ -7,52 +7,62 @@ using System.Collections.Generic;
 using System;
 using ImageProcessingTool.Models;
 
-public class ImgurService
+namespace ImageProcessingTool.Services
 {
-    private readonly HttpClient _client;
-    private readonly ImgurOptions _options;
-    private readonly ILogger<ImgurService> _logger;
-
-    public ImgurService(HttpClient client, IOptions<ImgurOptions> options, ILogger<ImgurService> logger)
+    public class ImgurService
     {
-        _client = client;
-        _options = options.Value;
-        _logger = logger;
-    }
+        private readonly HttpClient _client;
+        private readonly ImgurOptions _options;
+        private readonly ILogger<ImgurService> _logger;
 
-    public async Task<List<string>> GetImagesAsync(string query)
-    {
-        _client.DefaultRequestHeaders.Add("Authorization", "Client-ID " + _options.ClientId);
-        var response = await _client.GetAsync($"https://api.imgur.com/3/gallery/search?q={query}");
-        response.EnsureSuccessStatusCode();
-
-        var responseJson = await response.Content.ReadAsStringAsync();
-
-        // Log the response
-        _logger.LogInformation("Imgur API response: {Response}", responseJson);
-
-        var responseObject = JsonDocument.Parse(responseJson);
-
-        var imageUrls = new List<string>();
-        foreach (var item in responseObject.RootElement.GetProperty("data").EnumerateArray())
+        public ImgurService(HttpClient client, IOptions<ImgurOptions> options, ILogger<ImgurService> logger)
         {
-            if (item.TryGetProperty("images", out var images))
+            _client = client;
+            _options = options.Value;
+            _logger = logger;
+        }
+
+        public async Task<List<string>> GetImagesAsync(string query)
+        {
+            _client.DefaultRequestHeaders.Add("Authorization", "Client-ID " + _options.ClientId);
+            var response = await _client.GetAsync($"https://api.imgur.com/3/gallery/search?q={query}");
+            response.EnsureSuccessStatusCode();
+
+            var responseJson = await response.Content.ReadAsStringAsync();
+
+            // Log the response
+            _logger.LogInformation("Imgur API response: {Response}", responseJson);
+
+            var responseObject = JsonDocument.Parse(responseJson);
+
+            var imageUrls = new List<string>();
+            foreach (var item in responseObject.RootElement.GetProperty("data").EnumerateArray())
             {
-                foreach (var image in images.EnumerateArray())
+                if (item.TryGetProperty("images", out var images))
                 {
-                    if (image.TryGetProperty("link", out var linkProperty))
+                    foreach (var image in images.EnumerateArray())
                     {
-                        imageUrls.Add(linkProperty.GetString());
+                        if (image.TryGetProperty("link", out var linkProperty) &&
+                            image.TryGetProperty("type", out var typeProperty))
+                        {
+                            var imageUrl = linkProperty.GetString();
+                            var type = typeProperty.GetString();
+
+                            // Filter out non-image files
+                            if (type.StartsWith("image/"))
+                            {
+                                imageUrls.Add(imageUrl);
+                            }
+                            else
+                            {
+                                _logger.LogWarning("Non-image file skipped: {ImageUrl} (Type: {Type})", imageUrl, type);
+                            }
+                        }
                     }
                 }
             }
+
+            return imageUrls;
         }
-
-        return imageUrls;
-    }
-
-    public async Task<HttpResponseMessage> DownloadImageAsync(string imageUrl)
-    {
-        return await _client.GetAsync(imageUrl);
     }
 }
