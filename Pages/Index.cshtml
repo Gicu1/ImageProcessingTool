@@ -5,12 +5,17 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <form method="post">
+        <input type="text" name="query" placeholder="Search Imgur" required />
+        <button type="submit">Search</button>
+    </form>
+  
     <div style="display: grid; grid-template-columns: repeat(auto-fill, 100px); gap: 10px;">
         @foreach (var imageUrl in Model.Images)
         {
             <img src="@imageUrl" alt="Image from Imgur" style="width: 100px; height: 100px; object-fit: cover;" />
         }
     </div>
+    
 </div>
