@@ -2,8 +2,7 @@
 {
     public class ImgurOptions
     {
-        public string ClientId { get; set; }
-        // Add other properties as needed...
+        public string? ClientId { get; set; }
     }
 
 }

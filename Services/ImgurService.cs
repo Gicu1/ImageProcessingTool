@@ -1,8 +1,11 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using ImageProcessingTool.Models;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System;
+using ImageProcessingTool.Models;
 
 public class ImgurService
 {
@@ -48,6 +51,8 @@ public class ImgurService
         return imageUrls;
     }
 
-
-
+    public async Task<HttpResponseMessage> DownloadImageAsync(string imageUrl)
+    {
+        return await _client.GetAsync(imageUrl);
+    }
 }
