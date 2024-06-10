@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "m/N6XPUVO4LyEBp7Js57lZ3TpBJsl6qdV3JnRyu0qp96LAblVlanZivIty37vq386kWDEYzYXiTS+jXOj3BzuQ==",
+  "dgSpecHash": "phwXXPv0bsz5ackfEnfTO3H2gdnC20L0IGUYewyvHUp2I0a64HpFPZnetWfCr3V+E0xTU9Fu5n/WKiQNrGGWNg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\source\\repos\\ImageProcessingTool\\ImageProcessingTool.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Balamatiuc Gheorghe\\source\\repos\\ImageProcessingTool\\ImageProcessingTool.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Balamatiuc Gheorghe\\.nuget\\packages\\sixlabors.imagesharp\\3.1.4\\sixlabors.imagesharp.3.1.4.nupkg.sha512"
+  ],
   "logs": []
 }
