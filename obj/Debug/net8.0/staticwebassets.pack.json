@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Balamatiuc Gheorghe\\source\\repos\\ImageProcessingTool\\wwwroot\\images\\a.txt",
+      "PackagePath": "staticwebassets\\images\\a.txt"
+    },
+    {
       "Id": "C:\\Users\\Balamatiuc Gheorghe\\source\\repos\\ImageProcessingTool\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

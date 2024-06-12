@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "kO7JOZQYTUvF8T1QwG7Miyhaz9xPczq9K5NkkJUHKBU=",
+  "Hash": "HDYgXPFaRl+aEO3xir7Fw+cAkgpIIE3Lhuabg3mbXNE=",
   "Source": "ImageProcessingTool",
   "BasePath": "_content/ImageProcessingTool",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Balamatiuc Gheorghe\\source\\repos\\ImageProcessingTool\\wwwroot\\images\\a.txt",
+      "SourceId": "ImageProcessingTool",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Balamatiuc Gheorghe\\source\\repos\\ImageProcessingTool\\wwwroot\\",
+      "BasePath": "_content/ImageProcessingTool",
+      "RelativePath": "images/a.txt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\a.txt"
     },
     {
       "Identity": "C:\\Users\\Balamatiuc Gheorghe\\source\\repos\\ImageProcessingTool\\wwwroot\\js\\site.js",
