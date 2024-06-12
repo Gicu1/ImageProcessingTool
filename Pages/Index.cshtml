@@ -8,15 +8,67 @@
     <form id="searchForm" method="post">
         <input type="text" name="Query" placeholder="Search Imgur" required />
         <button type="submit">Search</button>
+        <select name="SortFilterOption" id="sortFilterDropdown">
+            <option value="">Default</option>
+            <option value="Alphabetical">Alphabetical</option>
+            <option value="ReverseAlphabetical">Reverse Alphabetical</option>
+            <!-- Add more options as needed -->
+        </select>
     </form>
 
-    <div id="imagesContainer" style="display: grid; grid-template-columns: repeat(auto-fill, 128px); gap: 20px;">
+    <div id="imagesContainer" style="display: grid; grid-template-columns: repeat(auto-fill, 128px); gap: 20px; margin-top: 20px;">
         @foreach (var imageUrl in Model.Images)
         {
-            <img src="@imageUrl" alt="Image from Imgur" style="width: 128px; height: 128px; object-fit: cover;" />
+            var thumbnailUrl = imageUrl.Insert(imageUrl.LastIndexOf('.'), "b");
+            <img src="@thumbnailUrl" alt="Image from Imgur" style="width: 128px; height: 128px; object-fit: cover;" data-fullsrc="@imageUrl" />
         }
     </div>
 </div>
+
+<div id="imageModal" style="display: none;">
+    <div id="modalContent">
+        <img id="modalImage" src="" alt="Selected Image" style="width: 100%; max-height: 80vh; object-fit: contain;" />
+        <div>
+            <a id="downloadButton" href="#" download="image.png">Save Image</a>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        #imagesContainer img {
+            transition: transform 0.3s;
+        }
+
+            #imagesContainer img:hover {
+                transform: scale(1.1);
+            }
+
+        #imageModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #modalContent {
+            position: relative;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+    </style>
+}
 
 @section Scripts {
     <script>
@@ -24,7 +76,24 @@
             event.preventDefault();
 
             const formData = new FormData(this);
-            const query = formData.get('Query');
+            const response = await fetch('/Index?handler=OnPost', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                const html = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const imagesContainer = doc.getElementById('imagesContainer');
+                document.getElementById('imagesContainer').innerHTML = imagesContainer.innerHTML;
+            }
+        });
+
+        document.getElementById('sortFilterDropdown').addEventListener('change', async function () {
+            const sortFilterOption = this.value;
+            const formData = new FormData(document.getElementById('searchForm'));
+            formData.set('SortFilterOption', sortFilterOption);
 
             const response = await fetch('/Index?handler=OnPost', {
                 method: 'POST',
@@ -37,6 +106,27 @@
                 const doc = parser.parseFromString(html, 'text/html');
                 const imagesContainer = doc.getElementById('imagesContainer');
                 document.getElementById('imagesContainer').innerHTML = imagesContainer.innerHTML;
+            }
+        });
+
+        const imagesContainer = document.getElementById('imagesContainer');
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const downloadButton = document.getElementById('downloadButton');
+
+        imagesContainer.addEventListener('click', function (event) {
+            if (event.target.tagName === 'IMG') {
+                modalImage.src = event.target.dataset.fullsrc; // Use the full-sized image URL
+                modal.style.display = 'flex';
+                downloadButton.href = `/Index?handler=DownloadImage&imageUrl=${encodeURIComponent(event.target.dataset.fullsrc)}`; // Update the download link
+                downloadButton.download = 'image.png';
+            }
+        });
+
+
+        modal.addEventListener('click', function (event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
             }
         });
     </script>
