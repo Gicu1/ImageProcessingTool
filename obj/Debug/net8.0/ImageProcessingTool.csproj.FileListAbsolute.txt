@@ -32,3 +32,6 @@ C:\Users\Balamatiuc Gheorghe\source\repos\ImageProcessingTool\obj\Debug\net8.0\r
 C:\Users\Balamatiuc Gheorghe\source\repos\ImageProcessingTool\bin\Debug\net8.0\SixLabors.ImageSharp.dll
 C:\Users\Balamatiuc Gheorghe\source\repos\ImageProcessingTool\obj\Debug\net8.0\ImageProcessingTool.csproj.AssemblyReference.cache
 C:\Users\Balamatiuc Gheorghe\source\repos\ImageProcessingTool\obj\Debug\net8.0\ImagePro.6AF3A5BA.Up2Date
+C:\Users\Balamatiuc Gheorghe\source\repos\ImageProcessingTool\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Balamatiuc Gheorghe\source\repos\ImageProcessingTool\bin\Debug\net8.0\System.Drawing.Common.dll
+C:\Users\Balamatiuc Gheorghe\source\repos\ImageProcessingTool\bin\Debug\net8.0\runtimes\win\lib\net8.0\Microsoft.Win32.SystemEvents.dll
