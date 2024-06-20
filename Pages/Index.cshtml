@@ -30,6 +30,7 @@
         <img id="modalImage" src="" alt="Selected Image" style="width: 100%; max-height: 80vh; object-fit: contain;" />
         <div>
             <a id="downloadButton" href="#" download="image.png">Save Image</a>
+            <button id="bwButton">Black & White</button>
         </div>
     </div>
 </div>
@@ -67,6 +68,21 @@
         form {
             margin-bottom: 20px;
         }
+
+        #bwButton {
+            margin-left: 10px; /* Add some space between buttons */
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            #bwButton:hover {
+                background-color: #555;
+            }
     </style>
 }
 
@@ -113,21 +129,43 @@
         const modal = document.getElementById('imageModal');
         const modalImage = document.getElementById('modalImage');
         const downloadButton = document.getElementById('downloadButton');
+        const bwButton = document.getElementById('bwButton'); // Reference to the new button
+
+        let currentImageUrl = '';
+        let isBlackAndWhite = false; // Track the state of the image
 
         imagesContainer.addEventListener('click', function (event) {
             if (event.target.tagName === 'IMG') {
-                modalImage.src = event.target.dataset.fullsrc; // Use the full-sized image URL
+                currentImageUrl = event.target.dataset.fullsrc; // Store the current image URL
+                modalImage.src = currentImageUrl; // Use the full-sized image URL
                 modal.style.display = 'flex';
-                downloadButton.href = `/Index?handler=DownloadImage&imageUrl=${encodeURIComponent(event.target.dataset.fullsrc)}`; // Update the download link
+                downloadButton.href = `/Index?handler=DownloadImage&imageUrl=${encodeURIComponent(currentImageUrl)}`; // Update the download link
                 downloadButton.download = 'image.png';
+                modalImage.style.filter = ''; // Reset filter
+                isBlackAndWhite = false; // Reset the state
+                bwButton.textContent = "Black & White"; // Reset button text
             }
         });
-
 
         modal.addEventListener('click', function (event) {
             if (event.target === modal) {
                 modal.style.display = 'none';
             }
+        });
+
+        bwButton.addEventListener('click', function () {
+            if (isBlackAndWhite) {
+                modalImage.style.filter = ''; // Remove grayscale filter
+                downloadButton.href = `/Index?handler=DownloadImage&imageUrl=${encodeURIComponent(currentImageUrl)}`; // Update the download link to the original image
+                downloadButton.download = 'image.png';
+                bwButton.textContent = "Black & White"; // Change button text
+            } else {
+                modalImage.style.filter = 'grayscale(100%)'; // Apply grayscale filter
+                downloadButton.href = `/Index?handler=DownloadBlackAndWhiteImage&imageUrl=${encodeURIComponent(currentImageUrl)}`; // Update the download link to the black and white image
+                downloadButton.download = 'bw_image.png';
+                bwButton.textContent = "Color"; // Change button text
+            }
+            isBlackAndWhite = !isBlackAndWhite; // Toggle the state
         });
     </script>
 }

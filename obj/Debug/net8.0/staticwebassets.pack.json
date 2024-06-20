@@ -13,8 +13,32 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Balamatiuc Gheorghe\\source\\repos\\ImageProcessingTool\\wwwroot\\images\\2OgmMwM.jpg",
+      "PackagePath": "staticwebassets\\images\\2OgmMwM.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Balamatiuc Gheorghe\\source\\repos\\ImageProcessingTool\\wwwroot\\images\\NlcS59A.jpg",
+      "PackagePath": "staticwebassets\\images\\NlcS59A.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Balamatiuc Gheorghe\\source\\repos\\ImageProcessingTool\\wwwroot\\images\\UKsBWc3.jpg",
+      "PackagePath": "staticwebassets\\images\\UKsBWc3.jpg"
+    },
+    {
       "Id": "C:\\Users\\Balamatiuc Gheorghe\\source\\repos\\ImageProcessingTool\\wwwroot\\images\\a.txt",
       "PackagePath": "staticwebassets\\images\\a.txt"
+    },
+    {
+      "Id": "C:\\Users\\Balamatiuc Gheorghe\\source\\repos\\ImageProcessingTool\\wwwroot\\images\\aFE3TlM.png",
+      "PackagePath": "staticwebassets\\images\\aFE3TlM.png"
+    },
+    {
+      "Id": "C:\\Users\\Balamatiuc Gheorghe\\source\\repos\\ImageProcessingTool\\wwwroot\\images\\bw_aFE3TlM.png",
+      "PackagePath": "staticwebassets\\images\\bw_aFE3TlM.png"
+    },
+    {
+      "Id": "C:\\Users\\Balamatiuc Gheorghe\\source\\repos\\ImageProcessingTool\\wwwroot\\images\\zRfdDTM.jpg",
+      "PackagePath": "staticwebassets\\images\\zRfdDTM.jpg"
     },
     {
       "Id": "C:\\Users\\Balamatiuc Gheorghe\\source\\repos\\ImageProcessingTool\\wwwroot\\js\\site.js",

@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "GFoH7lEtrOc=",
+  "dgSpecHash": "VyRkuFb7Aso=",
   "success": true,
   "projectFilePath": "C:\\Users\\Balamatiuc Gheorghe\\source\\repos\\ImageProcessingTool\\ImageProcessingTool.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Balamatiuc Gheorghe\\.nuget\\packages\\sixlabors.imagesharp\\3.1.4\\sixlabors.imagesharp.3.1.4.nupkg.sha512"
+    "C:\\Users\\Balamatiuc Gheorghe\\.nuget\\packages\\microsoft.win32.systemevents\\8.0.0\\microsoft.win32.systemevents.8.0.0.nupkg.sha512",
+    "C:\\Users\\Balamatiuc Gheorghe\\.nuget\\packages\\sixlabors.imagesharp\\3.1.4\\sixlabors.imagesharp.3.1.4.nupkg.sha512",
+    "C:\\Users\\Balamatiuc Gheorghe\\.nuget\\packages\\system.drawing.common\\8.0.6\\system.drawing.common.8.0.6.nupkg.sha512"
   ],
   "logs": []
 }
