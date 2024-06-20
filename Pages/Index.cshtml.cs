@@ -7,6 +7,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using ImageProcessingTool.Services;
 using Microsoft.Extensions.Logging;
+using System.Drawing;
+using System.Drawing.Imaging;
+using SixLabors.ImageSharp.Formats;
 
 namespace ImageProcessingTool.Pages
 {
@@ -87,6 +90,44 @@ namespace ImageProcessingTool.Pages
 
             var fileBytes = System.IO.File.ReadAllBytes(localFilePath);
             return File(fileBytes, "application/octet-stream", fileName);
+        }
+
+        public IActionResult OnGetDownloadBlackAndWhiteImage(string imageUrl)
+        {
+            var fileName = Path.GetFileName(imageUrl);
+            var localFilePath = Path.Combine("wwwroot", "images", fileName);
+
+            using (var client = new HttpClient())
+            {
+                var response = client.GetAsync(imageUrl).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var fileStream = new FileStream(localFilePath, FileMode.Create, FileAccess.Write);
+                    response.Content.CopyToAsync(fileStream).Wait();
+                    fileStream.Close();
+                }
+            }
+
+            using (var originalImage = new Bitmap(localFilePath))
+            {
+                var bwImage = new Bitmap(originalImage.Width, originalImage.Height);
+                for (int y = 0; y < originalImage.Height; y++)
+                {
+                    for (int x = 0; x < originalImage.Width; x++)
+                    {
+                        var originalColor = originalImage.GetPixel(x, y);
+                        var grayScale = (int)((originalColor.R * 0.3) + (originalColor.G * 0.59) + (originalColor.B * 0.11));
+                        var bwColor = Color.FromArgb(grayScale, grayScale, grayScale);
+                        bwImage.SetPixel(x, y, bwColor);
+                    }
+                }
+
+                var bwFilePath = Path.Combine("wwwroot", "images", "bw_" + fileName);
+                bwImage.Save(bwFilePath, ImageFormat.Png);
+
+                var fileBytes = System.IO.File.ReadAllBytes(bwFilePath);
+                return File(fileBytes, "image/png", "bw_" + fileName);
+            }
         }
     }
 }

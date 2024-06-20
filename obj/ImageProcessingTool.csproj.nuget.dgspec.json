@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\source\\repos\\ImageProcessingTool\\ImageProcessingTool.csproj": {}
+    "C:\\Users\\Balamatiuc Gheorghe\\source\\repos\\ImageProcessingTool\\ImageProcessingTool.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\source\\repos\\ImageProcessingTool\\ImageProcessingTool.csproj": {
+    "C:\\Users\\Balamatiuc Gheorghe\\source\\repos\\ImageProcessingTool\\ImageProcessingTool.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\source\\repos\\ImageProcessingTool\\ImageProcessingTool.csproj",
+        "projectUniqueName": "C:\\Users\\Balamatiuc Gheorghe\\source\\repos\\ImageProcessingTool\\ImageProcessingTool.csproj",
         "projectName": "ImageProcessingTool",
-        "projectPath": "C:\\Users\\user\\source\\repos\\ImageProcessingTool\\ImageProcessingTool.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\source\\repos\\ImageProcessingTool\\obj\\",
+        "projectPath": "C:\\Users\\Balamatiuc Gheorghe\\source\\repos\\ImageProcessingTool\\ImageProcessingTool.csproj",
+        "packagesPath": "C:\\Users\\Balamatiuc Gheorghe\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Balamatiuc Gheorghe\\source\\repos\\ImageProcessingTool\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Balamatiuc Gheorghe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -49,6 +48,16 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "SixLabors.ImageSharp": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -68,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
